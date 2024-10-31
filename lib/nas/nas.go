@@ -4,10 +4,11 @@ import (
 	"bytes"
 	"encoding/binary"
 	"fmt"
-	"github.com/davecgh/go-spew/spew"
-	log "github.com/sirupsen/logrus"
 	"my5G-RANTester/lib/nas/nasMessage"
 	"os"
+
+	"github.com/davecgh/go-spew/spew"
+	log "github.com/sirupsen/logrus"
 )
 
 var NasLogFile *os.File
@@ -54,7 +55,8 @@ func NewGsmMessage() *GsmMessage {
 }
 
 // GmmHeader Octet1 protocolDiscriminator securityHeaderType
-//           Octet2 MessageType
+//
+//	Octet2 MessageType
 type GmmHeader struct {
 	Octet [3]uint8
 }
@@ -202,6 +204,8 @@ func (a *Message) GmmMessageDecode(byteArray *[]byte) error {
 	binary.Read(buffer, binary.BigEndian, &a.GmmMessage.GmmHeader)
 
 	log.Debug(spew.Sdump(a))
+
+	log.Info("======>> Message Type: ", a.GmmMessage.GmmHeader.GetMessageType())
 
 	switch a.GmmMessage.GmmHeader.GetMessageType() {
 	case MsgTypeRegistrationRequest:

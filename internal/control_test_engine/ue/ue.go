@@ -1,7 +1,6 @@
 package ue
 
 import (
-	log "github.com/sirupsen/logrus"
 	"my5G-RANTester/config"
 	"my5G-RANTester/internal/control_test_engine/ue/context"
 	"my5G-RANTester/internal/control_test_engine/ue/nas/service"
@@ -12,6 +11,8 @@ import (
 	"os/signal"
 	"sync"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 )
 
 func RegistrationUe(conf config.Config, id uint8, wg *sync.WaitGroup) {
@@ -25,7 +26,7 @@ func RegistrationUe(conf config.Config, id uint8, wg *sync.WaitGroup) {
 	ue.NewRanUeContext(
 		conf.Ue.Msin,
 		security.AlgCiphering128NEA0,
-		security.AlgIntegrity128NIA2,
+		security.AlgIntegrity128NIA1,
 		conf.Ue.Key,
 		conf.Ue.Opc,
 		"c9e8763286b5b9ffbdf56e1297d0887b",

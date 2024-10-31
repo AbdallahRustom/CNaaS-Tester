@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"my5G-RANTester/lib/nas/nasType"
+	"my5G-RANTester/lib/openapi/models"
 )
 
 type RegistrationRequest struct {
@@ -32,6 +33,7 @@ type RegistrationRequest struct {
 	*nasType.NetworkSlicingIndication
 	*nasType.UpdateType5GS
 	*nasType.NASMessageContainer
+	*models.MmContext
 }
 
 func NewRegistrationRequest(iei uint8) (registrationRequest *RegistrationRequest) {

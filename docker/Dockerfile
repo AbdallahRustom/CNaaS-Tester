@@ -40,4 +40,6 @@ WORKDIR /my5G-RANTester/cmd
 COPY --from=builder /my5G-RANTester/cmd/app .
 COPY --from=builder /my5G-RANTester/docker/entrypoint.sh .
 
+RUN apt install tcpdump -y
+
 ENTRYPOINT ["/my5G-RANTester/cmd/entrypoint.sh"]

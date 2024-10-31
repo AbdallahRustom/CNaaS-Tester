@@ -16,6 +16,7 @@ const (
 	AlgIntegrity128NIA1 uint8 = 0x01 // 128-Snow3G
 	AlgIntegrity128NIA2 uint8 = 0x02 // 128-AES
 	AlgIntegrity128NIA3 uint8 = 0x03 // 128-ZUC
+	AlgIntegrityCNAAS   uint8 = 0x04 // CNAAS
 )
 
 // TS 33501 Annex D Algorithm identifier values For Knas_enc
@@ -24,6 +25,7 @@ const (
 	AlgCiphering128NEA1 uint8 = 0x01 // 128-Snow3G
 	AlgCiphering128NEA2 uint8 = 0x02 // 128-AES
 	AlgCiphering128NEA3 uint8 = 0x03 // 128-ZUC
+	AlgCipheringCNAAS   uint8 = 0x04 // CNAAS
 )
 
 // 1bit

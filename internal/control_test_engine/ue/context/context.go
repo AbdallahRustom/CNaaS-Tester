@@ -4,8 +4,6 @@ import (
 	"bytes"
 	"encoding/hex"
 	"fmt"
-	log "github.com/sirupsen/logrus"
-	"github.com/vishvananda/netlink"
 	"my5G-RANTester/lib/UeauCommon"
 	"my5G-RANTester/lib/milenage"
 	"my5G-RANTester/lib/nas/nasMessage"
@@ -15,6 +13,9 @@ import (
 	"net"
 	"reflect"
 	"regexp"
+
+	log "github.com/sirupsen/logrus"
+	"github.com/vishvananda/netlink"
 )
 
 // 5GMM main states in the UE.
@@ -38,6 +39,7 @@ type UEContext struct {
 	UnixConn   net.Conn
 	PduSession PDUSession
 	amfInfo    Amf
+	mmCtx      models.MmContext
 }
 
 type Amf struct {
@@ -144,6 +146,10 @@ func (ue *UEContext) NewRanUeContext(msin string,
 	// added initial state for SM(INACTIVE)
 	ue.SetStateSM_PDU_SESSION_INACTIVE()
 
+	mmCtx := models.MmContext{
+		AccessType: models.AccessType__3_GPP_ACCESS,
+	}
+	ue.mmCtx = mmCtx
 }
 
 func (ue *UEContext) GetUeId() uint8 {
@@ -495,6 +501,14 @@ func SetUESecurityCapability(ue *UEContext) (UESecurityCapability *nasType.UESec
 	case security.AlgCiphering128NEA3:
 		UESecurityCapability.SetEA3_128_5G(1)
 	}
+	UESecurityCapability.SetEA0_5G(1)
+	UESecurityCapability.SetEA1_128_5G(1)
+	UESecurityCapability.SetEA2_128_5G(1)
+	UESecurityCapability.SetEA3_128_5G(1)
+
+	UESecurityCapability.SetIA1_128_5G(1)
+	UESecurityCapability.SetIA2_128_5G(1)
+	UESecurityCapability.SetIA3_128_5G(1)
 
 	switch ue.UeSecurity.IntegrityAlg {
 	case security.AlgIntegrity128NIA0:
