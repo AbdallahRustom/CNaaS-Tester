@@ -25,7 +25,7 @@ func RegistrationUe(conf config.Config, id uint8, wg *sync.WaitGroup) {
 	// new UE context
 	ue.NewRanUeContext(
 		conf.Ue.Msin,
-		security.AlgCiphering128NEA0,
+		security.AlgCiphering128NEA1,
 		security.AlgIntegrity128NIA1,
 		conf.Ue.Key,
 		conf.Ue.Opc,
