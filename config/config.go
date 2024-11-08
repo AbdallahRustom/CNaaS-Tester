@@ -48,6 +48,8 @@ type Config struct {
 			Sst int    `yaml: "sst"`
 			Sd  string `yaml: "sd"`
 		} `yaml: "snssai"`
+		CiphAlgo string `yaml: "ciphalgo"`
+		IntAlgo  string `yaml: "intalgo"`
 	} `yaml:"ue"`
 	AMF struct {
 		Ip   string `yaml: "ip"`

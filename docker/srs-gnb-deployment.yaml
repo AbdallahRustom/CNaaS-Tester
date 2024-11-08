@@ -1,0 +1,208 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app: gnb
+    deployment.kubernetes.io/revision: '3'
+  creationTimestamp: '2024-10-31T10:42:21Z'
+  generation: 3
+  labels:
+    app: gnb
+    workload.user.cattle.io/workloadselector: apps.deployment-default-gnb
+  managedFields:
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:app: {}
+          f:labels:
+            .: {}
+            f:app: {}
+            f:workload.user.cattle.io/workloadselector: {}
+        f:spec:
+          f:progressDeadlineSeconds: {}
+          f:replicas: {}
+          f:revisionHistoryLimit: {}
+          f:selector: {}
+          f:strategy:
+            f:rollingUpdate:
+              .: {}
+              f:maxSurge: {}
+              f:maxUnavailable: {}
+            f:type: {}
+          f:template:
+            f:metadata:
+              f:annotations:
+                .: {}
+                f:cattle.io/timestamp: {}
+              f:labels:
+                .: {}
+                f:app: {}
+                f:workload.user.cattle.io/workloadselector: {}
+              f:namespace: {}
+            f:spec:
+              f:containers:
+                k:{"name":"gnb"}:
+                  .: {}
+                  f:command: {}
+                  f:env:
+                    .: {}
+                    k:{"name":"AMF_IP"}:
+                      .: {}
+                      f:name: {}
+                      f:value: {}
+                    k:{"name":"COMPONENT_NAME"}:
+                      .: {}
+                      f:name: {}
+                      f:value: {}
+                    k:{"name":"MCC"}:
+                      .: {}
+                      f:name: {}
+                      f:value: {}
+                    k:{"name":"MNC"}:
+                      .: {}
+                      f:name: {}
+                      f:value: {}
+                    k:{"name":"SRS_GNB_IP"}:
+                      .: {}
+                      f:name: {}
+                      f:value: {}
+                    k:{"name":"SRS_UE_IP"}:
+                      .: {}
+                      f:name: {}
+                      f:value: {}
+                  f:image: {}
+                  f:imagePullPolicy: {}
+                  f:name: {}
+                  f:resources: {}
+                  f:securityContext:
+                    .: {}
+                    f:allowPrivilegeEscalation: {}
+                    f:privileged: {}
+                    f:readOnlyRootFilesystem: {}
+                    f:runAsNonRoot: {}
+                  f:terminationMessagePath: {}
+                  f:terminationMessagePolicy: {}
+              f:dnsPolicy: {}
+              f:restartPolicy: {}
+              f:schedulerName: {}
+              f:securityContext: {}
+              f:terminationGracePeriodSeconds: {}
+      manager: rancher
+      operation: Update
+      time: '2024-10-31T11:10:09Z'
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            f:deployment.kubernetes.io/revision: {}
+        f:status:
+          f:availableReplicas: {}
+          f:conditions:
+            .: {}
+            k:{"type":"Available"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"Progressing"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+          f:observedGeneration: {}
+          f:readyReplicas: {}
+          f:replicas: {}
+          f:updatedReplicas: {}
+      manager: kube-controller-manager
+      operation: Update
+      subresource: status
+      time: '2024-10-31T11:10:12Z'
+  name: gnb
+  namespace: ns-enterprise1
+  resourceVersion: '307239'
+  uid: 1e99a9b2-9f65-4a50-bf99-8c8781233f8b
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: gnb
+      workload.user.cattle.io/workloadselector: apps.deployment-default-gnb
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        cattle.io/timestamp: '2024-10-31T11:05:21Z'
+      creationTimestamp: null
+      labels:
+        app: gnb
+        workload.user.cattle.io/workloadselector: apps.deployment-default-gnb
+      namespace: ns-enterprise1
+    spec:
+      containers:
+        - command:
+            - sleep
+            - '10000'
+          env:
+            - name: COMPONENT_NAME
+              value: gnb_zmq
+            - name: MCC
+              value: '001'
+            - name: MNC
+              value: '01'
+            - name: AMF_IP
+              value: 10.98.72.128
+            - name: SRS_GNB_IP
+              value: 0.0.0.0
+            - name: SRS_UE_IP
+              value: 10.104.27.138
+          image: abdallahrustom/k8s_gnb
+          imagePullPolicy: Always
+          name: gnb
+          resources: {}
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  conditions:
+    - lastTransitionTime: '2024-10-31T10:42:23Z'
+      lastUpdateTime: '2024-10-31T10:42:23Z'
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: 'True'
+      type: Available
+    - lastTransitionTime: '2024-10-31T10:42:21Z'
+      lastUpdateTime: '2024-10-31T11:10:12Z'
+      message: ReplicaSet "gnb-c6dd99979" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: 'True'
+      type: Progressing
+  observedGeneration: 3
+  readyReplicas: 1
+  replicas: 1
+  updatedReplicas: 1

@@ -1,0 +1,228 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app: ue
+    deployment.kubernetes.io/revision: '1'
+  creationTimestamp: '2024-10-31T11:13:17Z'
+  generation: 1
+  labels:
+    app: ue
+    workload.user.cattle.io/workloadselector: apps.deployment-ns-enterprise1-ue
+  managedFields:
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:app: {}
+          f:labels:
+            .: {}
+            f:app: {}
+            f:workload.user.cattle.io/workloadselector: {}
+        f:spec:
+          f:progressDeadlineSeconds: {}
+          f:replicas: {}
+          f:revisionHistoryLimit: {}
+          f:selector: {}
+          f:strategy:
+            f:rollingUpdate:
+              .: {}
+              f:maxSurge: {}
+              f:maxUnavailable: {}
+            f:type: {}
+          f:template:
+            f:metadata:
+              f:annotations:
+                .: {}
+                f:cattle.io/timestamp: {}
+              f:labels:
+                .: {}
+                f:app: {}
+                f:workload.user.cattle.io/workloadselector: {}
+              f:namespace: {}
+            f:spec:
+              f:containers:
+                k:{"name":"ue"}:
+                  .: {}
+                  f:command: {}
+                  f:env:
+                    .: {}
+                    k:{"name":"COMPONENT_NAME"}:
+                      .: {}
+                      f:name: {}
+                      f:value: {}
+                    k:{"name":"MCC"}:
+                      .: {}
+                      f:name: {}
+                      f:value: {}
+                    k:{"name":"MNC"}:
+                      .: {}
+                      f:name: {}
+                      f:value: {}
+                    k:{"name":"SRS_ENB_IP"}:
+                      .: {}
+                      f:name: {}
+                      f:value: {}
+                    k:{"name":"SRS_GNB_IP"}:
+                      .: {}
+                      f:name: {}
+                      f:value: {}
+                    k:{"name":"SRS_UE_IP"}:
+                      .: {}
+                      f:name: {}
+                      f:value: {}
+                    k:{"name":"UE1_IMSI"}:
+                      .: {}
+                      f:name: {}
+                      f:value: {}
+                    k:{"name":"UE1_KI"}:
+                      .: {}
+                      f:name: {}
+                      f:value: {}
+                    k:{"name":"UE1_OP"}:
+                      .: {}
+                      f:name: {}
+                      f:value: {}
+                  f:image: {}
+                  f:imagePullPolicy: {}
+                  f:name: {}
+                  f:resources: {}
+                  f:securityContext:
+                    .: {}
+                    f:allowPrivilegeEscalation: {}
+                    f:capabilities: {}
+                    f:privileged: {}
+                    f:readOnlyRootFilesystem: {}
+                    f:runAsNonRoot: {}
+                  f:terminationMessagePath: {}
+                  f:terminationMessagePolicy: {}
+              f:dnsPolicy: {}
+              f:restartPolicy: {}
+              f:schedulerName: {}
+              f:securityContext: {}
+              f:terminationGracePeriodSeconds: {}
+      manager: rancher
+      operation: Update
+      time: '2024-10-31T11:13:17Z'
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            f:deployment.kubernetes.io/revision: {}
+        f:status:
+          f:availableReplicas: {}
+          f:conditions:
+            .: {}
+            k:{"type":"Available"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"Progressing"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+          f:observedGeneration: {}
+          f:readyReplicas: {}
+          f:replicas: {}
+          f:updatedReplicas: {}
+      manager: kube-controller-manager
+      operation: Update
+      subresource: status
+      time: '2024-10-31T11:13:19Z'
+  name: ue
+  namespace: ns-enterprise1
+  resourceVersion: '307910'
+  uid: cc554ddf-1e2f-4215-98d8-b056535e2c47
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: ue
+      workload.user.cattle.io/workloadselector: apps.deployment-ns-enterprise1-ue
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        cattle.io/timestamp: '2024-10-31T11:11:41Z'
+      creationTimestamp: null
+      labels:
+        app: ue
+        workload.user.cattle.io/workloadselector: apps.deployment-ns-enterprise1-ue
+      namespace: ns-enterprise1
+    spec:
+      containers:
+        - command:
+            - sleep
+            - '10000'
+          env:
+            - name: COMPONENT_NAME
+              value: ue_5g_zmq
+            - name: MNC
+              value: '001'
+            - name: MCC
+              value: '01'
+            - name: UE1_KI
+              value: '12345678912345678912345678912345'
+            - name: UE1_OP
+              value: FE41D7338A60E7A1E053594A82A39748
+            - name: UE1_IMSI
+              value: '001011234567895'
+            - name: SRS_UE_IP
+              value: 0.0.0.0
+            - name: SRS_GNB_IP
+              value: 10.108.31.117
+            - name: SRS_ENB_IP
+              value: 10.108.31.117
+          image: abdallahrustom/k8s_ue
+          imagePullPolicy: Always
+          name: ue
+          resources: {}
+          securityContext:
+            allowPrivilegeEscalation: true
+            capabilities: {}
+            privileged: true
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  conditions:
+    - lastTransitionTime: '2024-10-31T11:13:19Z'
+      lastUpdateTime: '2024-10-31T11:13:19Z'
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: 'True'
+      type: Available
+    - lastTransitionTime: '2024-10-31T11:13:17Z'
+      lastUpdateTime: '2024-10-31T11:13:19Z'
+      message: ReplicaSet "ue-66d6df8bb8" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: 'True'
+      type: Progressing
+  observedGeneration: 1
+  readyReplicas: 1
+  replicas: 1
+  updatedReplicas: 1

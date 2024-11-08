@@ -27,6 +27,8 @@ ue:
   snssai:
     sst: 01
     sd: "010203"
+  ciphalgo: "NEA1"
+  intalgo: "NIA1" 
 
 amfif:
   ip: "127.0.0.1"

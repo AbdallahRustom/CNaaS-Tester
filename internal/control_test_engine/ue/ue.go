@@ -15,18 +15,30 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+
 func RegistrationUe(conf config.Config, id uint8, wg *sync.WaitGroup) {
-
+	
 	// wg := sync.WaitGroup{}
-
+	
 	// new UE instance.
 	ue := &context.UEContext{}
+	
+	algorithmMap := map[string]uint8{
+		"NEA0": security.AlgCiphering128NEA0,
+		"NEA1": security.AlgCiphering128NEA1,
+		"NEA2": security.AlgCiphering128NEA2,
+		"NEA3": security.AlgCiphering128NEA3,
+		"NIA0": security.AlgIntegrity128NIA0,
+		"NIA1": security.AlgIntegrity128NIA1,
+		"NIA2": security.AlgIntegrity128NIA2,
+		"NIA3": security.AlgIntegrity128NIA3,
+	}
 
 	// new UE context
 	ue.NewRanUeContext(
 		conf.Ue.Msin,
-		security.AlgCiphering128NEA1,
-		security.AlgIntegrity128NIA1,
+		algorithmMap[conf.ciphalgo],
+		algorithmMap[conf.intalgo],
 		conf.Ue.Key,
 		conf.Ue.Opc,
 		"c9e8763286b5b9ffbdf56e1297d0887b",

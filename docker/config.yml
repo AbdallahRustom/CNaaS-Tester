@@ -29,6 +29,8 @@ ue:
   snssai:
     sst: 1
     sd: "19CDE1"
+  ciphalgo: "NEA1"        # NEA0, NEA1, NEA2, NEA3
+  intalgo: "NIA1"         # NIA0, NIA1, NIA2, NIA3
  
 amfif:
   ip: "172.26.0.5"
