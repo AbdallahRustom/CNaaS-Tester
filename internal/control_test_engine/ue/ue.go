@@ -34,14 +34,11 @@ func RegistrationUe(conf config.Config, id uint8, wg *sync.WaitGroup) {
 		"NIA3": security.AlgIntegrity128NIA3,
 	}
 
-	fmt.Printf("%+v", algorithmMap[conf.ciphalgo])
-	fmt.Printf("%+v", algorithmMap[conf.intalgo])
-
 	// new UE context
 	ue.NewRanUeContext(
 		conf.Ue.Msin,
-		algorithmMap[conf.ciphalgo],
-		algorithmMap[conf.intalgo],
+		algorithmMap[conf.Ue.CiphAlgo],
+		algorithmMap[conf.Ue.IntAlgo],
 		conf.Ue.Key,
 		conf.Ue.Opc,
 		"c9e8763286b5b9ffbdf56e1297d0887b",

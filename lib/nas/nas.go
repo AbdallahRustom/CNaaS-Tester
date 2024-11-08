@@ -205,8 +205,6 @@ func (a *Message) GmmMessageDecode(byteArray *[]byte) error {
 
 	log.Debug(spew.Sdump(a))
 
-	log.Info("======>> Message Type: ", a.GmmMessage.GmmHeader.GetMessageType())
-
 	switch a.GmmMessage.GmmHeader.GetMessageType() {
 	case MsgTypeRegistrationRequest:
 		a.GmmMessage.RegistrationRequest = nasMessage.NewRegistrationRequest(MsgTypeRegistrationRequest)
