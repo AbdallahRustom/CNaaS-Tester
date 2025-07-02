@@ -3,12 +3,13 @@ package service
 import (
 	create "context"
 	"fmt"
-	log "github.com/sirupsen/logrus"
-	gtpv1 "github.com/wmnsk/go-gtp/v1"
-	"golang.org/x/net/ipv4"
 	"my5G-RANTester/internal/control_test_engine/gnb/context"
 	"net"
 	"syscall"
+
+	log "github.com/sirupsen/logrus"
+	gtpv1 "github.com/wmnsk/go-gtp/v1"
+	"golang.org/x/net/ipv4"
 )
 
 func InitGTPTunnel(gnb *context.GNBContext) error {
@@ -31,9 +32,10 @@ func InitGTPTunnel(gnb *context.GNBContext) error {
 	conte := create.TODO()
 	userPlane, err := gtpv1.DialUPlane(conte, localUdp, remoteUdp)
 	if err != nil {
+		log.Info("[GNB][GTP] Error in dial between GNB and UPF", err)
 		return fmt.Errorf("[GNB][GTP] Error in dial between GNB and UPF", err)
 	}
-
+	log.Infof("userPlane is :%v", userPlane)
 	// successful established GTP/UDP tunnel.
 	gnb.SetN3Plane(userPlane)
 
